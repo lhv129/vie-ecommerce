@@ -33,6 +33,10 @@ class CategoryService
         return $this->repo->create($data);
     }
 
+    public function show($id){
+        return $this->repo->findById($id);
+    }
+
     public function update(UpdateCategoryRequest $request, int $id)
     {
         $data = $request->validated();

@@ -27,6 +27,11 @@ class SubCategoryController extends Controller
         return $this->responseCommon(201, 'Thêm mới thành công danh mục sản phẩm', $this->service->create($request));
     }
 
+    public function show(int $id)
+    {
+        return $this->responseCommon(201, 'Tìm thành công danh mục sản phẩm', $this->service->show($id));
+    }
+
     public function update(UpdateSubCategoryRequest $request, int $id)
     {
         return $this->responseCommon(200, 'Cập nhật danh mục sản phẩm thành công', $this->service->update($request, $id));

@@ -49,6 +49,11 @@ class SubCategoryService
         return $this->repo->create($data);
     }
 
+    public function show($id)
+    {
+        return $this->repo->findById($id);
+    }
+
     public function update(UpdateSubCategoryRequest $request, int $id)
     {
         $data = $request->validated();
