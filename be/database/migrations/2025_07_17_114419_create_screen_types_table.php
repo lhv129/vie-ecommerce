@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('product_variants', function (Blueprint $table) {
-            $table->unsignedBigInteger('gpu_type_id')->nullable();
-
-            $table->foreign('gpu_type_id')->references('id')->on('gpu_types')->nullOnDelete();
+        Schema::create('screen_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -23,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('product_variants', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('screen_types');
     }
 };

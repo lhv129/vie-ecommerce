@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('color_types', function (Blueprint $table) {
+        Schema::create('ram_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->nullable();
-            $table->timestamps();
+            $table->string('name');
+            $table->string('slug')->unique();
             $table->softDeletes();
+
+            $table->timestamps();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('color_types');
+        Schema::dropIfExists('ram_types');
     }
 };

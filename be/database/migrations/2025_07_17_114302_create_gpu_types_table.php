@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cpu_types', function (Blueprint $table) {
+        Schema::create('gpu_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('family');
-            $table->string('model');
-            $table->string('generation')->nullable();
-            $table->string('slug');
-            $table->timestamps();
+            $table->string('slug')->unique();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cpu_types');
+        Schema::dropIfExists('gpu_types');
     }
 };

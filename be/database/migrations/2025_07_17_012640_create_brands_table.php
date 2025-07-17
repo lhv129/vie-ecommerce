@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('screen_types', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('slug')->nullable();
-            $table->timestamps();
+            $table->string('image')->nullable();
+            $table->string('fileImage')->nullable();
+            $table->string('slug')->unique();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('screen_types');
+        Schema::dropIfExists('brands');
     }
 };
