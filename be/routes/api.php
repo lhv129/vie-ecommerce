@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BrandController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
@@ -26,17 +27,25 @@ Route::prefix('categories')->group(function () {
 });
 
 Route::prefix('sub-categories')->group(function () {
-    Route::post('/get-all-by-category', [SubCategoryController::class, 'index']);         // Lấy tất cả sub
-    Route::post('/', [SubCategoryController::class, 'store']);        // Tạo sub
-    Route::get('/{id}', [SubCategoryController::class, 'show']);       // Chi tiết sub
-    Route::put('/{id}', [SubCategoryController::class, 'update']);     // Cập nhật
-    Route::delete('/{id}', [SubCategoryController::class, 'destroy']); // Xoá
+    Route::post('/get-all-by-category', [SubCategoryController::class, 'index']);       
+    Route::post('/', [SubCategoryController::class, 'store']);      
+    Route::get('/{id}', [SubCategoryController::class, 'show']);       
+    Route::put('/{id}', [SubCategoryController::class, 'update']);    
+    Route::delete('/{id}', [SubCategoryController::class, 'destroy']); 
 });
 
 Route::prefix('products')->group(function () {
-    Route::get('/', [ProductController::class, 'index']);         // Lấy tất cả sub
-    Route::post('/', [ProductController::class, 'store']);        // Tạo sub
-    Route::get('/{id}', [ProductController::class, 'show']);       // Chi tiết sub
-    Route::put('/{id}', [ProductController::class, 'update']);     // Cập nhật
-    Route::delete('/{id}', [ProductController::class, 'destroy']); // Xoá
+    Route::get('/', [ProductController::class, 'index']);       
+    Route::post('/', [ProductController::class, 'store']);      
+    Route::get('/{id}', [ProductController::class, 'show']);       
+    Route::put('/{id}', [ProductController::class, 'update']);    
+    Route::delete('/{id}', [ProductController::class, 'destroy']); 
+});
+
+Route::prefix('brands')->group(function () {
+    Route::get('/', [BrandController::class, 'index']);
+    Route::post('/', [BrandController::class, 'store']);      
+    Route::get('/{id}', [BrandController::class, 'show']);       
+    Route::put('/{id}', [BrandController::class, 'update']);     
+    Route::delete('/{id}', [BrandController::class, 'destroy']); 
 });
