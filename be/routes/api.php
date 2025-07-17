@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\SubCategoryController;
 
@@ -30,4 +31,12 @@ Route::prefix('sub-categories')->group(function () {
     Route::get('/{id}', [SubCategoryController::class, 'show']);       // Chi tiết sub
     Route::put('/{id}', [SubCategoryController::class, 'update']);     // Cập nhật
     Route::delete('/{id}', [SubCategoryController::class, 'destroy']); // Xoá
+});
+
+Route::prefix('products')->group(function () {
+    Route::get('/', [ProductController::class, 'index']);         // Lấy tất cả sub
+    Route::post('/', [ProductController::class, 'store']);        // Tạo sub
+    Route::get('/{id}', [ProductController::class, 'show']);       // Chi tiết sub
+    Route::put('/{id}', [ProductController::class, 'update']);     // Cập nhật
+    Route::delete('/{id}', [ProductController::class, 'destroy']); // Xoá
 });
