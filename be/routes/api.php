@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ColorTypeController;
+use App\Http\Controllers\Api\CpuTypeController;
 use App\Http\Controllers\Api\SubCategoryController;
 
 /*
@@ -48,4 +50,20 @@ Route::prefix('brands')->group(function () {
     Route::get('/{id}', [BrandController::class, 'show']);       
     Route::put('/{id}', [BrandController::class, 'update']);     
     Route::delete('/{id}', [BrandController::class, 'destroy']); 
+});
+
+Route::prefix('color-types')->group(function () {
+    Route::get('/', [ColorTypeController::class, 'index']);
+    Route::post('/', [ColorTypeController::class, 'store']);      
+    Route::get('/{id}', [ColorTypeController::class, 'show']);       
+    Route::put('/{id}', [ColorTypeController::class, 'update']);     
+    Route::delete('/{id}', [ColorTypeController::class, 'destroy']); 
+});
+
+Route::prefix('cpu-types')->group(function () {
+    Route::get('/', [CpuTypeController::class, 'index']);
+    Route::post('/', [CpuTypeController::class, 'store']);      
+    Route::get('/{id}', [CpuTypeController::class, 'show']);       
+    Route::put('/{id}', [CpuTypeController::class, 'update']);     
+    Route::delete('/{id}', [CpuTypeController::class, 'destroy']); 
 });
