@@ -2,9 +2,12 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
 use Throwable;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -19,25 +22,31 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof ValidationException) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Lỗi validate.',
-                'errors' => $exception->errors(),
-            ], 422);
-        }
-        return parent::render($request, $exception);
-    }
-
-    /**
-     * Register the exception handling callbacks for the application.
-     */
-    public function register(): void
+    public function register()
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+        // Xử lý ValidationException
+        $this->renderable(function (ValidationException $e, $request) {
+            if ($request->is('api/*')) { // Kiểm tra nếu là API request
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Lỗi validate.',
+                    'errors' => $e->errors(), // Lấy lỗi từ ValidationException
+                ], Response::HTTP_UNPROCESSABLE_ENTITY); // 422 Unprocessable Entity
+            }
+        });
+
+        // HÃY TẠO MỘT RENDERABLE CHO NotFoundHttpException
+        $this->renderable(function (NotFoundHttpException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Tài nguyên không tồn tại.',
+                    'data' => []
+                ], Response::HTTP_NOT_FOUND);
+            }
         });
     }
 }

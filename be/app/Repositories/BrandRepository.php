@@ -24,7 +24,7 @@ class BrandRepository
 
     public function findById(int $id)
     {
-        return Brand::where('id', $id)->first();
+        return Brand::findOrFail($id);
     }
 
     public function delete(int $id)

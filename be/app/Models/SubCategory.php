@@ -13,4 +13,9 @@ class SubCategory extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['name', 'slug', 'category_id', 'image', 'fileImage'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

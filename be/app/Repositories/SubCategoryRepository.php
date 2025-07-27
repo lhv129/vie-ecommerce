@@ -24,7 +24,7 @@ class SubCategoryRepository
 
     public function findById(int $id)
     {
-        return SubCategory::where('id', $id)->first();
+        return SubCategory::findOrFail($id);
     }
 
     public function delete(int $id)

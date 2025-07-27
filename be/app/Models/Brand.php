@@ -13,4 +13,9 @@ class Brand extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = ['name', 'image', 'fileImage', 'slug'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

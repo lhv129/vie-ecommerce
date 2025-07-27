@@ -94,11 +94,6 @@ class SubCategoryService
 
     public function delete(int $id)
     {
-        $subCategory = $this->repo->findById($id);
-        if (!$subCategory) {
-            return null;
-        }
-        $this->repo->delete($id);
-        return $subCategory;
+        return $this->repo->delete($id);
     }
 }

@@ -23,7 +23,7 @@ class CategoryRepository
 
     public function findById(int $id)
     {
-        return Category::where('id', $id)->first();
+        return Category::findOrFail($id);
     }
 
     public function delete(int $id)

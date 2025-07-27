@@ -37,11 +37,6 @@ class BrandController extends Controller
 
     public function destroy(int $id)
     {
-        $brand = $this->service->delete($id);
-        if (!$brand) {
-            return $this->responseCommon(200, 'Thương hiệu không tồn tại, vui lòng kiểm tra lại', []);
-        } else {
-            return $this->responseCommon(200, 'Xóa thương hiệu thành công', []);
-        }
+        return $this->responseCommon(200, 'Xóa thương hiệu thành công', $this->service->delete($id));
     }
 }

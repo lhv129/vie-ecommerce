@@ -93,11 +93,6 @@ class BrandService
 
     public function delete(int $id)
     {
-        $brand = $this->repo->findById($id);
-        if (!$brand) {
-            return null;
-        }
-        $this->repo->delete($id);
-        return $brand;
+        return $this->repo->delete($id);
     }
 }

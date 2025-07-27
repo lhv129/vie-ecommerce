@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
     public function show(int $id)
     {
-        return $this->responseCommon(201, 'Tìm thành công danh mục', $this->service->show($id));
+        return $this->responseCommon(200, 'Tìm thành công danh mục', $this->service->show($id));
     }
 
     public function update(UpdateCategoryRequest $request, int $id)
@@ -39,11 +39,6 @@ class CategoryController extends Controller
 
     public function destroy(int $id)
     {
-        $category = $this->service->delete($id);
-        if (!$category) {
-            return $this->responseCommon(200, 'Danh mục không tồn tại, vui lòng kiểm tra lại', []);
-        } else {
-            return $this->responseCommon(200, 'Xóa danh mục thành công', []);
-        }
+        return $this->responseCommon(200, 'Xóa danh mục thành công', $this->service->delete($id));
     }
 }
