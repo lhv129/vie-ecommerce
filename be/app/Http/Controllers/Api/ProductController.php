@@ -18,31 +18,26 @@ class ProductController extends Controller
 
     public function index()
     {
-        return $this->responseCommon(200, 'Lấy thành công danh sách sản phẩm', $this->service->getAll());
+        return $this->responseCommon(200, 'Lấy thành công danh sách sản phẩm.', $this->service->getAll());
     }
 
     public function store(StoreProductRequest $request)
     {
-        return $this->responseCommon(201, 'Thêm mới sản phẩm thành công', $this->service->create($request));
+        return $this->responseCommon(201, 'Thêm mới sản phẩm thành công.', $this->service->create($request));
     }
 
     public function show(int $id)
     {
-        return $this->responseCommon(201, 'Tìm thành công sản phẩm', $this->service->show($id));
+        return $this->responseCommon(201, 'Tìm thành công sản phẩm.', $this->service->show($id));
     }
 
     public function update(UpdateProductRequest $request, int $id)
     {
-        return $this->responseCommon(200, 'Cập nhật sản phẩm thành công', $this->service->update($request, $id));
+        return $this->responseCommon(200, 'Cập nhật sản phẩm thành công.', $this->service->update($request, $id));
     }
 
     public function destroy(int $id)
     {
-        $product = $this->service->delete($id);
-        if (!$product) {
-            return $this->responseCommon(200, 'Sản phẩm không tồn tại, vui lòng kiểm tra lại', []);
-        } else {
-            return $this->responseCommon(200, 'Xóa sản phẩm thành công', []);
-        }
+        return $this->responseCommon(200, 'Xóa sản phẩm thành công.', $this->service->delete($id));
     }
 }
