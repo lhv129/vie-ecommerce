@@ -28,7 +28,7 @@ class ProductController extends Controller
 
     public function show(int $id)
     {
-        return $this->responseCommon(201, 'Tìm thành công sản phẩm.', $this->service->show($id));
+        return $this->responseCommon(200, 'Tìm thành công sản phẩm.', $this->service->show($id));
     }
 
     public function update(UpdateProductRequest $request, int $id)

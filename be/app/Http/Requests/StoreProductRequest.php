@@ -26,6 +26,7 @@ class StoreProductRequest extends FormRequest
             'brand_id' => 'required|exists:brands,id',
             'name' => 'required|string|max:100|unique:products,name',
             'slug' => 'string|max:100|unique:products,slug',
+            'sku' => 'required|string|max:15|min:5',
             'description' => 'required|min:200|max:2048',
             'features' => 'required|min:200|max:1000',
             'images' => 'required|array|min:5|max:10', // Yêu cầu là mảng, ít nhất 5, nhiều nhất 10 phần tử
@@ -43,6 +44,9 @@ class StoreProductRequest extends FormRequest
             'name.required' => 'Tên sản phẩm không được bỏ trống.',
             'name.max' => 'Tên sản phẩm quá dài.',
             'name.unique' => 'Tên sản phẩm đã tồn tại.',
+            'sku.required' => 'Vui lòng nhập mã sản phẩm',
+            'sku.min' => 'Mã sản phẩm quá ngắn',
+            'sku.max' => 'Mã sản phẩm quá dài',
             'description.required' => 'Vui lòng nhập mô tả sản phẩm.',
             'description.min' => 'Mô tả sản phẩm quá ngắn.',
             'description.max' => 'Mô tả sản phẩm quá dài.',
