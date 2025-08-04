@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('specification_values', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_variant_id');
             $table->unsignedBigInteger('specification_id');
             $table->string('value');
             $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_variant_id')->references('id')->on('product_variants')->onDelete('cascade');
             $table->foreign('specification_id')->references('id')->on('specifications')->onDelete('cascade');
         });
     }

@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('spec_group_id');
             $table->string('name'); // CPU, RAM, STORAGE...
             $table->boolean('is_required')->default(false);
             $table->unsignedInteger('display_order')->default(0);
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('spec_group_id')->references('id')->on('spec_groups')->onDelete('cascade');
         });
     }
 
