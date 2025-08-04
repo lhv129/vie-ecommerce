@@ -13,7 +13,7 @@ class Product extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['name', 'description', 'sub_category_id', 'brand_id', 'slug', 'features', 'sku', 'variant_name', 'is_new', 'is_on_sale', 'stock_quantity', 'status'];
+    protected $fillable = ['name', 'description', 'sub_category_id', 'brand_id', 'slug'];
 
     // Thêm thuộc tính $hidden để ẩn các trường này khi chuyển đổi thành JSON/array
     protected $hidden = [

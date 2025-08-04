@@ -26,9 +26,6 @@ class StoreProductRequest extends FormRequest
             'brand_id' => 'required|exists:brands,id',
             'name' => 'required|string|max:100|unique:products,name',
             'slug' => 'string|max:100|unique:products,slug',
-            'sku' => 'required|string|max:15|min:5',
-            'description' => 'required|min:200|max:2048',
-            'features' => 'required|min:200|max:1000',
             'images' => 'required|array|min:5|max:10', // Yêu cầu là mảng, ít nhất 5, nhiều nhất 10 phần tử
             'images.*' => 'image|mimes:jpg,jpeg,png,gif,webp|max:2048', // Mỗi phần tử trong mảng phải là ảnh, định dạng và kích thước
         ];
@@ -44,15 +41,6 @@ class StoreProductRequest extends FormRequest
             'name.required' => 'Tên sản phẩm không được bỏ trống.',
             'name.max' => 'Tên sản phẩm quá dài.',
             'name.unique' => 'Tên sản phẩm đã tồn tại.',
-            'sku.required' => 'Vui lòng nhập mã sản phẩm',
-            'sku.min' => 'Mã sản phẩm quá ngắn',
-            'sku.max' => 'Mã sản phẩm quá dài',
-            'description.required' => 'Vui lòng nhập mô tả sản phẩm.',
-            'description.min' => 'Mô tả sản phẩm quá ngắn.',
-            'description.max' => 'Mô tả sản phẩm quá dài.',
-            'features.required' => 'Vui lòng nhập mô tả sản phẩm nổi bật.',
-            'features.min' => 'Mô tả sản phẩm nổi bật quá ngắn.',
-            'features.max' => 'Mô tả sản phẩm nổi bật quá dài.',
             'images.required' => 'Vui lòng tải lên ảnh cho sản phẩm.',
             'images.min' => 'Sản phẩm phải có ít nhất :min ảnh.', // :min sẽ được thay thế bằng giá trị 5
             'images.max' => 'Sản phẩm chỉ được có tối đa :max ảnh.', // :max sẽ được thay thế bằng giá trị 10
